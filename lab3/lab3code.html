@@ -15,10 +15,25 @@
         <style type="text/css">
   			 html, body { margin: 0; padding: 0; height: 100%; }
 				   #map { min-height: 100%; }
+             .legend {
+               padding: 6px 8px;
+               line-height: 18px;
+               background: rgba(255,255,255,0.9);
+               box-shadow: 0 0 15px rgba(0,0,0,0.2);
+               border-radius: 5px;
+           }
 
+            .legend i {
+               width: 18px;
+               height: 18px;
+               float: left;
+               margin-right: 8px;
+               opacity: 0.7;
+           }
 			</style>
     </head>
   <body>
+
         <div id="map"></div>
 				<script type="text/javascript">
 
@@ -27,27 +42,34 @@
 					zoom: 5
 			});
 
+      var onEachFeature = function(feature, layer) {
+          if (feature.properties) {
+            var prop = feature.properties;
+
+          var popup = '<h3>'+prop['Location']+'</h3>'+'<br>Cases Day 1: '+prop['1']+'<br>Cases Day 16: '+prop['covid'];
+
+            feature.layer = layer;
+            layer.bindPopup(popup, {maxWidth: "auto"});
+          }
+        };
+
+
+
 var imagery = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
-		  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a
-href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data
-&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-contributors',
+		  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	    subdomains: 'abcd',
 	    minZoom: 0,
 	    maxZoom: 20,
 	    ext: 'png'
-);
+});
 
-var canvas = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
-		  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a
-href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data
-&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-contributors',
+var canvas = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 	    subdomains: 'abcd',
 	    minZoom: 0,
 	    maxZoom: 18,
 	    ext: 'png'
-  ).addTo(map);
+  }).addTo(map);
 
   function getColor(value) {
     return value > 50000000 ? '#54278f':
@@ -75,7 +97,20 @@ contributors',
         return 0.9 * Math.pow(val/minValue, .7) * minRadius;
       }
 
-    var coviddata = new L.geoJson(coviddata).addTo(map);
+      var coviddata = new L.geoJson(coviddata, {
+        onEachFeature : onEachFeature,
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng, {
+                    color: '#61c87b',
+                    opacity: 1,
+                    weight: 2,
+                    fillColor: '#61c87b',
+                    fillOpacity: .5,
+                    //radius: 10
+                    radius: calcRadius(feature.properties.covid)
+                })
+            }
+    }).addTo(map);
 
     var basemaps = {
     "Light Canvas": canvas,
@@ -83,46 +118,20 @@ contributors',
 };
 
     var overlaymaps = {
-      "Chine Provinces": provinces
+      "China Provinces": provinces
     };
 
     L.control.layers(basemaps, overlaymaps, {collapsed:false}).addTo(map);
 
-    var onEachFeature = function(feature, layer) {
-        if (feature.properties) {
-          var prop = feature.properties;
-
-          var popup = '<h3>'+prop['Location']+'</h3>'+'<br>Cases Day 1: '+prop['1']+'<br>Cases
-          Day 16: '+prop['covid'];
-
-          feature.layer = layer;
-          layer.bindPopup(popup, {maxWidth: "auto"});
-        }
-      };
 
 
-    var coviddata = new L.geoJson(coviddata, {
-    onEachFeature : onEachFeature
-    pointToLayer: function(feature, ll){
-        return L.circleMarker(ll, {
-                color: '#61c87b',
-                opacity: 1,
-                weight: 2,
-                fillColor: '#61c87b',
-                fillOpacity: .5,
-                //radius: 10
-                radius: calcRadius(feature.properties.covid)
-            });
-        }
-}).addTo(map);
 
-var legend = L.control({position: 'bottomleft'}); // Try the other lower corner if you
-prefer.
+
+
+var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
       var div = L.DomUtil.create('div', 'legend'),
-        grades = [0, 1000000, 2000000, 5000000, 10000000]; // break values to define the
-intervals of population - YOU WILL NEED TO MODIFY IT TO GET THE RIGHT
-LEGEND BREAKS
+        grades = [0, 1000000, 2000000, 5000000, 10000000];
          div.innerHTML = '<b>Population 2019 <br><br></b>';
 // The legend title, in this case it's Population 2019
 // Loop through the classes or “grades” and generate a label with a colored square for each interval
@@ -144,7 +153,7 @@ LEGEND BREAKS
 
               }
             });
-            
+
             // Adding the legend when the layer is added
             map.on('overlayadd', function(eventLayer){
               if (eventLayer.name == 'provinces'){
@@ -152,23 +161,7 @@ LEGEND BREAKS
               }
             });
 
-            #map { min-height: 100%; }
-              .legend {
-                padding: 6px 8px;
-                line-height: 18px;
-                background: rgba(255,255,255,0.9);
-                box-shadow: 0 0 15px rgba(0,0,0,0.2);
-                border-radius: 5px;
-            }
-             /* Optional: adjust the values below to change the appearance of the legend
-  color boxes */
-             .legend i {
-                width: 18px;
-                height: 18px;
-                float: left;
-                margin-right: 8px;
-                opacity: 0.7;
-            }
+
 
 
 
