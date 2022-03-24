@@ -1,4 +1,5 @@
-1. 
-2. 
+1. The color information is coming from the DIFF field from the json file. In this line "color: getColorFor(data.properties.DIFF)" it shows calling upon the diff field in this line.
+2. Top write in an intermediate lightblue tier with a break at 3, you would go to "function getColorFor(value) {
+return value 
 3.
 4.
