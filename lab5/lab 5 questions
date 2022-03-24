@@ -1,5 +1,5 @@
 1. The color information is coming from the DIFF field from the json file. In this line "color: getColorFor(data.properties.DIFF)" it shows calling upon the diff field in this line.
 2. Top write in an intermediate lightblue tier with a break at 3, you would go to "function getColorFor(value) {
-return value 
+return value" and after the values you have added in you could add "value >= 3 ? '#67a9cf':" to get a light blue layer with a break at 3
 3.
 4.
