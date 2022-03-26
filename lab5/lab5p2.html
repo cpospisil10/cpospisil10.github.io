@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Lab 5 Timeline</title>
+    <title>Leaflet.timeline</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
     <script src="https://skeate.dev/Leaflet.timeline/examples/leaflet.timeline.js"></script>
@@ -45,25 +45,24 @@
     <div id="map"></div>
 
     <script>
-	 function getColorFor(value) {
-    		return value <= -5 ? '#b2182b':
-    		       value <= -3 ? '#ef8a62':
-		       value <= -1 ? '#fddbc7':
-		       value >= 5 ? '#2166ac':
-		       value >= 3 ? '#67a9cf':
-		       value >= 1 ? '#d1e5f0':
-                 	 '#d3d3d3';
-            }
-			
-	var minValue = 1;
-	var minRadius = 4;
-
+var minValue = 1;
+var minRadius = 4;
+    
     function calcRadius(val) {
     return 1.0083 * Math.pow(val/minValue,.5716)*minRadius;
     }
-	
-	    
-      var background = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+        
+          function getColorFor(value) {
+                return value <= -5 ? '#b2182b':
+                       value <= -3 ? '#ef8a62':
+                       value <= -1 ? '#fddbc7':
+                       value >= 5 ? '#2166ac':
+                       value >= 3 ? '#67a9cf':
+                       value >= 1 ? '#d1e5f0':
+                                    '#f7f7f7';
+            }
+			
+      var background = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
 	attribution: '',
 	subdomains: 'abcd',
 	minZoom: 0,
@@ -85,6 +84,7 @@
         displayed.forEach(function (elec) {
           var li = document.createElement("li");
           li.innerHTML = elec.feature.properties.NAME + ' -  Biden: ' + elec.feature.properties.DEM + ', Trump: ' + elec.feature.properties.REP;
+            console.log(li);
           list.appendChild(li);
         });
       }
@@ -107,10 +107,10 @@
           pointToLayer: function (data, latlng) {
             var diff = (data.properties.DIFF);
             return L.circleMarker(latlng, {
-              calcRadius(data.properties.EV),
+              radius: calcRadius(data.properties.EV_EV),
               color: getColorFor(data.properties.DIFF),
               fillColor: getColorFor(data.properties.DIFF),
-            }).bindPopup('<p>' + 'Electoral votes:' + data.properties.EV + '</p>');
+            }).bindPopup('<p>' + 'Electoral votes:' + data.properties.EV_EV + '</p>');
           },
         });
         timelineControl.addTo(map);
