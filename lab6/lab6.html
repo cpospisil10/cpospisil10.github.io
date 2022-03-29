@@ -10,6 +10,10 @@
     <style>
       html,
       body,
+
+      <div id='viewDiv'></div>
+      <div id='timeSlider'></div>
+
       #viewDiv {
         padding: 0;
         margin: 0;
@@ -35,9 +39,11 @@
 
 //map layer
           const layer = new FeatureLayer({
-url:   
+url:
 "https://services9.arcgis.com/RHVPKKiFTONKtxq3/ArcGIS/rest/services/USGS_Seismic_Data_
-v1/FeatureServer/0"
+v1/FeatureServer/0",
+      outFields: ["depth", "mag"], // used to specify what attribute fields to query
+      popupTemplate: popupTemplate
       });
 
 //map with FeatureLayer
@@ -71,9 +77,11 @@ view.whenLayerView(layer).then(function (lv) {
 const legend = new Legend({
         view: view
       });
-  
+
 view.ui.add(legend, "top-left"); //you can position the legend here
-    
-});  
+
+});
  </script>
   </head>
+  
+  // onpage4 of lab 6
