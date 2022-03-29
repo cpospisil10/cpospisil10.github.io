@@ -45,8 +45,8 @@
     <div id="map"></div>
 
     <script>
-var minValue = 1;
-var minRadius = 4;
+	var minValue = 1;
+	var minRadius = 4;
     
     function calcRadius(val) {
     return 1.0083 * Math.pow(val/minValue,.5716)*minRadius;
@@ -59,7 +59,7 @@ var minRadius = 4;
                        value >= 5 ? '#2166ac':
                        value >= 3 ? '#67a9cf':
                        value >= 1 ? '#d1e5f0':
-                                    '#f7f7f7';
+                                    '#e6e6e6';
             }
 			
       var background = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
@@ -76,7 +76,6 @@ var minRadius = 4;
         zoom: 4
       });
 
-      // this is just used to show the polls in the sidebar
       function updateList(timeline) {
         var displayed = timeline.getLayers();
         var list = document.getElementById("displayed-list");
@@ -89,7 +88,6 @@ var minRadius = 4;
         });
       }
 
-      // this is similar to previous example --
       function onLoadData(data) {
         var getInterval = function (elec) {
           return {
