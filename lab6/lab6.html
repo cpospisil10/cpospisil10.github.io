@@ -36,6 +36,22 @@
           "esri/widgets/TimeSlider",
           "esri/widgets/Legend"
         ], function (Map, MapView, FeatureLayer, TimeSlider, Legend) {
+      
+      const popupTemplate = {
+          // autocasts as new PopupTemplate()
+          title: "this event took place at {depth} feet deep",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                {
+                  fieldName: "mag",
+                  label: "Magnitude",
+                  format: {
+                    places: 0,
+                    digitSeparator: true
+                  }
+                }]}]};
 
 //map layer
           const layer = new FeatureLayer({
@@ -83,5 +99,3 @@ view.ui.add(legend, "top-left"); //you can position the legend here
 });
  </script>
   </head>
-  
-  // onpage4 of lab 6
