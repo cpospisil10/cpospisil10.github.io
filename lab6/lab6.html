@@ -36,7 +36,7 @@
           "esri/widgets/TimeSlider",
           "esri/widgets/Legend"
         ], function (Map, MapView, FeatureLayer, TimeSlider, Legend) {
-      
+
       const popupTemplate = {
           // autocasts as new PopupTemplate()
           title: "The earthquake happened at this depth: {depth}",
@@ -64,14 +64,12 @@
                   format: {
                     places: 0,
                     digitSeparator: true
-                  }},
-                }]}]};
+                  }}
+                ]}]};
 
 //map layer
           const layer = new FeatureLayer({
-url:
-"https://services9.arcgis.com/RHVPKKiFTONKtxq3/ArcGIS/rest/services/USGS_Seismic_Data_
-v1/FeatureServer/0",
+url: "https://services9.arcgis.com/RHVPKKiFTONKtxq3/ArcGIS/rest/services/USGS_Seismic_Data_v1/FeatureServer/0",
       outFields: ["depth", "mag", "hoursOld:", "types"], // used to specify what attribute fields to query
       popupTemplate: popupTemplate
       });
