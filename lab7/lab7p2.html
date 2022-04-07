@@ -71,3 +71,123 @@ directories</i>';
           layer.bindPopup(popup, {maxWidth: "auto"});
         }
       }; // end onEachFeature
+    
+     var blueCircleMarkers = {
+        radius: 4,
+        fillColor: "#00AEEF",
+        color: "#3978BF",
+        weight: 1,
+        opacity: 0.8,
+        fillOpacity: 0.5
+      };
+      var orangeCircleMarkers = {
+        radius: 5,
+        fillColor: "#ED1C24",
+        color: "#ED1C24",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.7
+      };
+      var greenCircleMarkers = {
+        radius: 5,
+        fillColor: "#ffff00",
+        color: "#286933",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.7
+      };
+    
+    var firstlayer = L.geoJson(omaJson, {
+        // add popups
+        onEachFeature: onEachFeature,
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, blueCircleMarkers);
+        }
+      }).addTo(map);
+      var timelineLayer = L.geoJson(omaJson, {
+        onEachFeature: onEachFeature,
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, orangeCircleMarkers);
+        }
+      });
+      // now make a timeline layer that the slider can manipulate
+      var searchLayer = L.geoJson(omaJson, {
+        onEachFeature: onEachFeature,
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, greenCircleMarkers);
+        }
+      });
+    
+ //
+ 
+    var sliderControl = L.control.sliderControl({
+          position: "topright",
+          layer: timelineLayer,
+          range: true // gives it a bottom and a top slider
+      });
+      map.addControl(sliderControl);
+      sliderControl.startSlider(); // initialize
+      var searchOptions = {
+        position: 'topleft',
+        title: 'Search',
+        placeholder: 'Example: John Smith',
+        maxResultLength: 10,
+        caseSensitive: false,
+        showInvisibleFeatures: true,
+        layerToToggle: searchLayer,
+        threshold: 0.5, // default is .5, will match imperfect results
+        showResultFct: function(feature, container) {
+          props = feature.properties;
+          var name = L.DomUtil.create('b', null, container);
+          name.innerHTML = props.LNAME;
+          container.appendChild(L.DomUtil.create('br', null, container));
+          var cat = props.LNAME ? props.FNAME : props.OCCUPATION,
+              info = cat;
+          container.appendChild(document.createTextNode(info));
+        }
+      };
+      var searchControl = L.control.fuseSearch(searchOptions);
+      map.addControl(searchControl);
+      searchControl.indexFeatures(omaJson, ['LNAME']);
+      displayFeatures(omaJson, searchLayer);
+      function displayFeatures(features, layer) {
+        var popup = L.DomUtil.create('div', 'tiny-popup', map.getContainer());
+        for (var id in features) {
+          var feat = features[id];
+          var cat = feat.properties.categorie;
+          var site = L.geoJson(feat, {
+            pointToLayer: function(feature, latLng) {
+              var marker = L.marker(latLng, {
+    icon: orangeCircleMarkers,
+                keyboard: false,
+                riseOnHover: true
+              });
+              if (! L.touch) {
+                marker.on('mouseover', function(position) {
+                }).on('mouseout', function(position) {
+                  L.DomUtil.removeClass(popup, 'visible');
+                });
+              }
+              return marker;
+            },
+            onEachFeature: onEachFeature
+          });
+          if (layer !== undefined) {
+              layer.addLayer(site);
+          }
+        }
+        return layer;
+      };
+    
+    var overlays = {
+"People of Color": firstlayer
+  };
+  
+var baseMaps = {
+"Historic": basemap
+};
+  
+  L.control.layers(overlays, baseMaps, {collapsed:false}).addTo(map);
+    </script>
+  </body>
+</html>
