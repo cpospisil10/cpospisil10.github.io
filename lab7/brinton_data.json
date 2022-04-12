@@ -1,3 +1,4 @@
+var brinton = [
 name,latitude,longitude,time
 "Masonic Opera House: What Cheer, IA",41.401397,-92.354629,1/1/1904
 "Masonic Opera House: What Cheer, IA",41.401397,-92.354629,1/2/1904
@@ -1283,3 +1284,5 @@ Opera House,41.580281,-92.374907,12/15/1908
 Opera House,41.580281,-92.374907,12/16/1908
 Opera House,41.178903,-92.251849,12/17/1908
 Opera House,41.198372,-92.093089,12/18/1908
+
+]
