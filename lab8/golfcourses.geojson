@@ -1,0 +1,410 @@
+{
+ "currentVersion": 10.61,
+ "id": 146,
+ "name": "GolfCourses_144K",
+ "type": "Feature Layer",
+ "description": "The polygon feature class identifies golf courses in Lincoln Nebraska.",
+ "geometryType": "esriGeometryPolygon",
+ "sourceSpatialReference": {
+  "wkid": 102705,
+  "latestWkid": 102705,
+  "vcsWkid": 105703,
+  "latestVcsWkid": 6360
+ },
+ "copyrightText": "Lincoln/Lancaster County Planning Department",
+ "parentLayer": {
+  "id": 138,
+  "name": "144K"
+ },
+ "subLayers": [],
+ "minScale": 0,
+ "maxScale": 0,
+ "drawingInfo": {
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "NOTES",
+   "field2": null,
+   "field3": null,
+   "defaultSymbol": null,
+   "defaultLabel": null,
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        38,
+        115,
+        0,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "driving range",
+     "label": "Range",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       56,
+       168,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        56,
+        168,
+        0,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "fairway",
+     "label": "Fairway",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       169,
+       224,
+       56,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "golfcourse",
+     "label": "Course",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       120,
+       237,
+       23,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        120,
+        237,
+        23,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "hole",
+     "label": "Green",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       130,
+       130,
+       130,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        130,
+        130,
+        130,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "parking lot",
+     "label": "Parking Lot",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       197,
+       206,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        197,
+        206,
+        0,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "putting green",
+     "label": "Practice Green",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       248,
+       253,
+       110,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        252,
+        254,
+        199,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "sandtrap",
+     "label": "Sand Trap",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       38,
+       115,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        38,
+        115,
+        0,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "tee box",
+     "label": "Tee Box",
+     "description": ""
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       101,
+       199,
+       234,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        101,
+        199,
+        234,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "water",
+     "label": "Water",
+     "description": ""
+    }
+   ],
+   "fieldDelimiter": ","
+  },
+  "transparency": 44,
+  "labelingInfo": null
+ },
+ "defaultVisibility": false,
+ "extent": {
+  "xmin": -1.0772950087413836E7,
+  "ymin": 4969927.0012670765,
+  "xmax": -1.0746787151006423E7,
+  "ymax": 4993461.491858354,
+  "spatialReference": {
+   "wkid": 102100,
+   "latestWkid": 3857
+  }
+ },
+ "hasAttachments": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "displayField": "NAME",
+ "typeIdField": null,
+ "subtypeFieldName": null,
+ "subtypeField": null,
+ "defaultSubtypeCode": null,
+ "fields": [
+  {
+   "name": "OBJECTID",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null
+  },
+  {
+   "name": "SHAPE",
+   "type": "esriFieldTypeGeometry",
+   "alias": "Shape",
+   "domain": null
+  },
+  {
+   "name": "HOLE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "HOLE",
+   "domain": null
+  },
+  {
+   "name": "LUCODE",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "LUCODE",
+   "domain": null
+  },
+  {
+   "name": "LUSUB",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "LUSUB",
+   "domain": null
+  },
+  {
+   "name": "UNITS",
+   "type": "esriFieldTypeSmallInteger",
+   "alias": "UNITS",
+   "domain": null
+  },
+  {
+   "name": "ACRES",
+   "type": "esriFieldTypeSingle",
+   "alias": "ACRES",
+   "domain": null
+  },
+  {
+   "name": "NOTES",
+   "type": "esriFieldTypeString",
+   "alias": "NOTES",
+   "length": 30,
+   "domain": null
+  },
+  {
+   "name": "NAME",
+   "type": "esriFieldTypeString",
+   "alias": "NAME",
+   "length": 35,
+   "domain": null
+  },
+  {
+   "name": "SHAPE_Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE_Length",
+   "domain": null
+  },
+  {
+   "name": "SHAPE_Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "SHAPE_Area",
+   "domain": null
+  }
+ ],
+ "geometryField": {
+  "name": "SHAPE",
+  "type": "esriFieldTypeGeometry",
+  "alias": "Shape"
+ },
+ "indexes": [
+  {
+   "name": "FDO_OBJECTID",
+   "fields": "OBJECTID",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "FDO_SHAPE",
+   "fields": "SHAPE",
+   "isAscending": true,
+   "isUnique": false,
+   "description": ""
+  }
+ ],
+ "subtypes": [],
+ "relationships": [],
+ "canModifyLayer": false,
+ "canScaleSymbols": false,
+ "hasLabels": false,
+ "capabilities": "Map",
+ "maxRecordCount": 1000,
+ "supportsStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportedQueryFormats": "JSON, AMF, geoJSON",
+ "isDataVersioned": false,
+ "effectiveMinScale": 150000,
+ "effectiveMaxScale": 100001,
+ "ownershipBasedAccessControlForFeatures": {"allowOthersToQuery": true},
+ "useStandardizedQueries": true,
+ "advancedQueryCapabilities": {
+  "useStandardizedQueries": true,
+  "supportsStatistics": true,
+  "supportsHavingClause": true,
+  "supportsCountDistinct": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsPagination": true,
+  "supportsTrueCurve": true,
+  "supportsReturningQueryExtent": true,
+  "supportsQueryWithDistance": true,
+  "supportsSqlExpression": true
+ },
+ "supportsDatumTransformation": true,
+ "supportsCoordinatesQuantization": true
+}
