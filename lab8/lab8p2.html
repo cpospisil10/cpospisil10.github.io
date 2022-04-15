@@ -73,7 +73,7 @@
             .data( flood.features ) 
             .enter() 
             .append( "path" ) 
-            .attr( "fill", function(d) {return ramp(d.properties.RESYRBLT)}) 
+            .attr( "fill", function(d) {return ramp(d.properties.TARGET_F_1)}) 
             .attr( "stroke", "#999" ) 
             .attr( "d", geoPath )
             .attr("class","buildingdata") 
