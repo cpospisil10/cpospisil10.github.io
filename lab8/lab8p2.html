@@ -61,7 +61,7 @@
 
         //select element; bind data; append attributes; apply 
         g.selectAll( "path" )
-            .data( lnkrds.features ) 
+            .data( streets.features ) 
             .enter() 
             .append( "path" ) 
             .attr( "fill", "#ccc" ) 
@@ -70,7 +70,7 @@
 
         var lnk_json = svg.append( "g" ); 
         lnk_json.selectAll( "path" ) 
-            .data( lnkbldngsjson.features ) 
+            .data( flood.features ) 
             .enter() 
             .append( "path" ) 
             .attr( "fill", function(d) {return ramp(d.properties.RESYRBLT)}) 
