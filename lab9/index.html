@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-    <title>Visualize features with realistic WebStyleSymbols - 4.14</title>
-    <link rel="stylesheet"
-href="https://js.arcgis.com/4.14/esri/themes/light/main.css"/>
+    <title>Lab 9</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/light/main.css"/>
     <script src="https://js.arcgis.com/4.14/"></script>
     <style>
       html,
@@ -13,11 +13,8 @@ href="https://js.arcgis.com/4.14/esri/themes/light/main.css"/>
       #viewDiv {padding: 0; margin: 0; height: 100%; width: 100%; }
    </style>
     <script>
-require(["esri/WebScene","esri/views/SceneView","esri/layers/FeatureLayer",
-"esri/layers/SceneLayer","esri/tasks/support/Query"],
-function(WebScene, SceneView, FeatureLayer, SceneLayer, Query) {
-
-
+      require(["esri/WebScene","esri/views/SceneView","esri/layers/FeatureLayer","esri/layers/SceneLayer","esri/tasks/support/Query"],
+      function(WebScene, SceneView, FeatureLayer, SceneLayer, Query) {
         // Create the web scene
         var map = new WebScene({
           basemap: "satellite",
@@ -31,14 +28,14 @@ function(WebScene, SceneView, FeatureLayer, SceneLayer, Query) {
             position: {
               latitude: 41.6608232,
               longitude: -91.537668,
-              z: 500
+              z: 400  //camera height
             },
-            tilt: 70,
-            heading: 70
+            tilt: 50, //angle
+            heading: 300  //orientation
           },
           environment: {
             lighting: {
-              date: new Date("April 15, 2020 20:00:00 EDT"),
+              date: new Date("May 5, 2000 13:00:00 EDT"),
               directShadowsEnabled: true,
               ambientOcclusionEnabled: true
             }
@@ -46,119 +43,109 @@ function(WebScene, SceneView, FeatureLayer, SceneLayer, Query) {
         });
 
         var uniqueValueInfos = [
-                  {
-                    value: "Crataegus sp.",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Crataegus",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                  {
-                    value: "Fraxinus pennsylvanica",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Fraxinus",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                  {
-                    value: "Picea abies",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Picea",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                            {
-                    value: "Gleditsia triacanthos",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Robinia",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                                      {
-                    value: "Fagus grandifolia",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Fagus",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                                      {
-                    value: "Quercus macrocarpa",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Quercus",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                            {
-                    value: "Pinus strobus",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Pinus",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  },
-                  {
-                    value: "Liriodendron tulipifera",
-                    symbol: {
-                      type: "web-style", // autocasts as new WebStyleSymbol()
-                      name: "Philodendron",
-                      styleName: "EsriRealisticTreesStyle"
-                    }
-                  }
-                ];
+          {
+            value: "Crataegus sp.",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "California Palm",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+          {
+            value: "Fraxinus pennsylvanica",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "California Redwood",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+          {
+            value: "Picea abies",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Ficus",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+                    {
+            value: "Gleditsia triacanthos",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Desert Willow",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+                              {
+            value: "Fagus grandifolia",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Orchid",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+                              {
+            value: "Quercus macrocarpa",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Rose",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+                    {
+            value: "Pinus strobus",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Palm Lily",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          },
+          {
+            value: "Liriodendron tulipifera",
+            symbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Witch Hazel",
+              styleName: "EsriRealisticTreesStyle"
+            }
+          }
+        ];
 
-        var vegetationLayer = new FeatureLayer({
-                 url:
-       "https://maps.facilities.uiowa.edu/arcgis/rest/services/Features/Trees/MapServer/1",
-                 elevationInfo: {
-                   mode: "on-the-ground"
-                 },
-                 renderer: {
-                   type: "unique-value", // autocasts as new UniqueValueRenderer()
-                   field: "Scientific",
-                   defaultSymbol: {
-                     type: "web-style", // autocasts as new WebStyleSymbol()
-                     name: "Unknown",
-                     styleName: "EsriRealisticTreesStyle"
-                   },
-                   uniqueValueInfos: uniqueValueInfos,
-                   visualVariables: [
-                     {
-                       type: "size",
-                       field: "Height",
-                       axis: "height" // take the real height of the plant from the SIZE field
-                     },
-                     {
-                       type: "rotation",
-                       valueExpression: "random() * 360" // we use a random rotation, so that plants look different
-                     }
-                   ]
-                 }
-               });
+        //define and add vegetation layer
+          var vegetationLayer = new FeatureLayer({
+          url: "https://maps.facilities.uiowa.edu/arcgis/rest/services/Features/Trees/MapServer/1",
+          elevationInfo: {
+            mode: "on-the-ground"
+          },
+          renderer: {
+            type: "unique-value", // autocasts as new UniqueValueRenderer()
+            field: "Scientific",
+            defaultSymbol: {
+              type: "web-style", // autocasts as new WebStyleSymbol()
+              name: "Unknown",
+              styleName: "EsriRealisticTreesStyle"
+            },
+            uniqueValueInfos: uniqueValueInfos,
+            visualVariables: [
+              {
+                type: "size",
+                field: "Height",
+                axis: "height" // take the real height of the plant from the SIZE field
+              },
+              {
+                type: "rotation",
+                valueExpression: "random() * 360" // we use a random rotation, so that plants look different
+              }
+            ]
+          }
+        });
 
-            var parking_spaces = new Featurelayer({
-              url: "https://maps.facilities.uiowa.edu/arcgis/rest/services/Features/ParkingSpaces/MapServer"
-            })
+        var bikeLayer = new FeatureLayer({
+          url: "https://maps.facilities.uiowa.edu/arcgis/rest/services/Features/Bikes/MapServer/5"
+        })
 
-            var closures = new Featurelayer({
-              url: "https://maps.facilities.uiowa.edu/arcgis/rest/services/Features/Closures/MapServer"
-            })
-
-          
-               map.addMany([
-                 vegetationLayer,
-                 parking_spaces,
-                 closures
-               ]
-               );
-       });
-
-
+        map.addMany(
+          [vegetationLayer, bikeLayer]
+        );
+      });
 
     </script>
   </head>
