@@ -34,7 +34,7 @@ maxZoom: 20,
 ext: 'png'
 }).addTo(map);
 
-$.getJSON("https://cpospisil10.github.io/lab7/city.geojson")
+$.getJSON("https://cpospisil10.github.io/final project/la_cities.geojson")
             .done(function(data) {
                 var info = processData(data);
                 createPropSymbols(info.timestamps, data);
