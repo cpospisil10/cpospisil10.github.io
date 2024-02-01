@@ -16,10 +16,20 @@
       <style>
           html, body { margin: 0; padding: 0; height: 100%; }
           #map { min-height: 100%; }
+
+   h1,{ 
+            position: absolute; 
+        background: gray; 
+            left: 10px; 
+            font-size: 1.3em; 
+            font-weight: 100; 
+   }
+        
       </style>
   </head>
   <body>
       <div id="map"></div>
+      <h1>Los Angeles Population Map</h1> 
       <script>
           var map = L.map('map', {
                 center: [34.125, -118.256871],
